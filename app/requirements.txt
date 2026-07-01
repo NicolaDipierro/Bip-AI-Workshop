@@ -1,0 +1,7 @@
+#Questo file definisce le dipendenze Python. Usiamo transformers e torch (versione CPU per evitare download mastodontici da vari gigabyte)
+# per l'AI, fastapi per l'interfaccia API e azure-monitor-opentelemetry per l'osservabilità nativa su Azure.
+fastapi==0.110.0
+uvicorn==0.28.0
+transformers==4.38.2
+torch==2.2.1 --index-url https://download.pytorch.org/whl/cpu
+azure-monitor-opentelemetry==1.6.0
