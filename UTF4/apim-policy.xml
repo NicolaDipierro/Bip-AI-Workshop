@@ -1,9 +1,14 @@
 <policies>
     <inbound>
         <base />
-        <check-header name="Ocp-Apim-Subscription-Key" failed-check-httpcode="401" failed-check-error-message="Accesso Negato: API Key mancante o non valida." mandatory="true" />
         
-        <rate-limit-by-key calls="5" renewal-period="60" counter-key="@(context.Request.IpAddress)" remaining-calls-variable-name="remainingCallsPerMinute" />
+        <set-header name="Host" exists-action="override">
+            <value>aiworkshopacaapp2026.prouddune-4eb2f0cb.northeurope.azurecontainerapps.io</value>
+        </set-header>
+
+        <check-header name="Ocp-Apim-Subscription-Key" failed-check-httpcode="401" failed-check-error-message="Accesso Negato: API Key mancante o non valida." />
+        
+        <rate-limit calls="5" renewal-period="60" />
         
         <cors allow-credentials="false">
             <allowed-origins>
@@ -14,12 +19,12 @@
                 <method>POST</method>
             </allowed-methods>
             <allowed-headers>
-                <origin>*</origin>
+                <header>*</header>
             </allowed-headers>
         </cors>
     </inbound>
     <backend>
-        <base />
+        <forward-request />
     </backend>
     <outbound>
         <base />
