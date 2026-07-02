@@ -17,7 +17,7 @@ app = FastAPI(
     version="1.0"
 )
 
-# Caricamento del modello di Sentiment Analysis (Leggero: ~260MB)
+# Caricamento del modello di Sentiment Analysis (Leggero: ~260MB) e viene embeddato nel container Docker
 print("Loading AI Model (DistilBERT)...")
 classifier = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
 print("Model loaded successfully!")

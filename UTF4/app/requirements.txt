@@ -19,3 +19,6 @@ torch==2.2.1 --index-url https://download.pytorch.org/whl/cpu
 # Serve per agganciare l'applicazione ad Azure Application Insights, permettendo l'invio automatico 
 # di metriche (latenza), log di errore e tracciamento delle richieste HTTP (Modulo 4).
 azure-monitor-opentelemetry==1.6.0
+
+# usato per convertire i tensor di output del modello e restituire le risposte JSON a FastAPI.
+numpy<2.0.0
