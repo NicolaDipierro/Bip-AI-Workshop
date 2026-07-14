@@ -1,0 +1,15 @@
+# Validation Resource group
+az bicep build --file resource-group.bicep
+az deployment sub validate --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json
+az deployment sub create --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json  --what-if
+
+# Deploy Resource group
+az deployment sub create --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json  --what-if
+
+# Validation Infrastructure
+az bicep build --file main.bicep
+az deployment group validate --resource-group utf-iac-rg --template-file main.bicep --parameters main.parameters.json
+az deployment group create --resource-group utf-iac-rg --template-file main.bicep --parameters main.parameters.json  --what-if
+
+# Deploy Infrastructure
+az deployment group create --resource-group utf-iac-rg --template-file main.bicep --parameters main.parameters.json
