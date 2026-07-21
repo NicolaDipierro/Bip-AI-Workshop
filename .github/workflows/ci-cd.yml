@@ -4,68 +4,40 @@ on:
   push:
     branches:
       - main
-    paths:
-      - UF6/**
-      - .github/workflows/ci-cd.yml
-  workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: UF6
 
 jobs:
+
   build-and-test:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      # TODO
+      # Configurare Python
 
-      - name: Install dependencies
-        working-directory: UF6
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest
-          pip install bandit
-          pip install pip-audit
+      # TODO
+      # Installare le dipendenze
 
-      - name: Run Unit Tests
-        working-directory: UF6
-        env:
-          PYTHONPATH: ${{ github.workspace }}/UF6
-        run: |
-          pytest
+      # TODO
+      # Eseguire i test
 
-      - name: Run Bandit
-        working-directory: UF6
-        run: |
-          bandit -r app/
+      # TODO
+      # Eseguire Bandit
 
-      - name: Run Dependency Scan
-        working-directory: UF6
-        run: |
-          pip-audit
+      # TODO
+      # Eseguire pip-audit
 
   deploy:
+
     needs: build-and-test
+
     runs-on: ubuntu-latest
 
-    environment:
-      name: production
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: UF6
+      # TODO
+      # Deploy Azure
