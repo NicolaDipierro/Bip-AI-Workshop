@@ -2,7 +2,7 @@ import os
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 
-# URL del nostro scrigno in cloud
+# URL del key vault in cloud
 vault_url = "https://ai-kv-001.vault.azure.net/"
 
 # Autenticazione sicura (usa l'identità di Azure, senza chiavi!)

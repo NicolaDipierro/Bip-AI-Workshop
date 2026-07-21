@@ -1,0 +1,47 @@
+import random
+import time
+
+from fastapi import APIRouter
+from app.models import Order
+
+router = APIRouter()
+
+orders = []
+
+
+@router.get("/health")
+def health():
+
+    return {
+        "status": "UP"
+    }
+
+
+@router.get("/orders")
+def get_orders():
+
+    return orders
+
+
+@router.post("/orders")
+def create_order(order: Order):
+
+    # Simulazione rallentamento
+
+    time.sleep(random.randint(1, 5))
+
+    # Simulazione errore casuale
+
+    if random.randint(1, 10) > 7:
+
+        raise Exception(
+            "Database connection failed"
+        )
+
+    orders.append(
+        order.model_dump()
+    )
+
+    return {
+        "message": "Order created"
+    }
