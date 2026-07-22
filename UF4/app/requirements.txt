@@ -8,12 +8,11 @@ uvicorn==0.28.0
 
 # transformers: La libreria di Hugging Face che permette di scaricare, inizializzare 
 # e utilizzare modelli di Intelligenza Artificiale e Deep Learning pre-addestrati (come DistilBERT).
-transformers==4.38.2
+transformers==4.57.1
 
-# torch: Il motore di calcolo (PyTorch) richiesto sotto il cofano dalla libreria transformers 
-# per eseguire i calcoli matematici del modello. Viene forzata la versione CPU (--index-url) 
-# per evitare di scaricare i pacchetti GPU (CUDA), riducendo il peso del container da 5GB a circa 300MB.
-torch==2.2.1 --index-url https://download.pytorch.org/whl/cpu
+# torch: Il motore di calcolo (PyTorch) richiesto sotto il cofano dalla libreria transformers.
+# Questa versione e compatibile con Python 3.14 e installabile dai wheel precompilati su pip.
+torch==2.12.1
 
 # azure-monitor-opentelemetry: L'SDK ufficiale di Microsoft basato sullo standard OpenTelemetry. 
 # Serve per agganciare l'applicazione ad Azure Application Insights, permettendo l'invio automatico 
@@ -21,4 +20,5 @@ torch==2.2.1 --index-url https://download.pytorch.org/whl/cpu
 azure-monitor-opentelemetry==1.6.0
 
 # usato per convertire i tensor di output del modello e restituire le risposte JSON a FastAPI.
-numpy<2.0.0
+# Con Python 3.14 servono wheel recenti, quindi usiamo NumPy 2.x.
+numpy>=2.0.0
