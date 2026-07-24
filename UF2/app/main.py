@@ -1,39 +1,46 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import random
+from openai import OpenAI
 
 app = FastAPI(
-    title="Fake AI Prediction API",
+    title="AI Foundry API",
     description="API utilizzata per il laboratorio Docker",
     version="1.0.0"
 )
 
+endpoint = "https://uf2-foundry.services.ai.azure.com/openai/v1"
+deployment_name = "gpt-5.4-nano"
 
-class PredictionRequest(BaseModel):
+
+class AskRequest(BaseModel):
     text: str
+    foundry_key: str
 
 
 @app.get("/")
 def healthcheck():
     return {
         "status": "running",
-        "service": "fake-ai-api"
+        "service": "foundry-ai-api"
     }
 
 
-@app.post("/predict")
-def predict(request: PredictionRequest):
+@app.post("/ask")
+def ask(request: AskRequest):
 
-    sentiment = random.choice([
-        "Positive",
-        "Negative",
-        "Neutral"
-    ])
+    client = OpenAI(
+        base_url=endpoint,
+        api_key=request.foundry_key
+    )
 
-    confidence = round(random.uniform(0.75, 0.99), 2)
+    completion = client.chat.completions.create(
+        model=deployment_name,
+        messages=[{"role": "user", "content": request.text}],
+    )
 
+    # The chat completion content is available at completion.choices[0].message.content
     return {
         "input": request.text,
-        "prediction": sentiment,
-        "confidence": confidence
+        "response": completion.choices[0].message.content
     }
+    
