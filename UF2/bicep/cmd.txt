@@ -4,7 +4,7 @@ az deployment sub validate --location westeurope --template-file resource-group.
 az deployment sub create --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json  --what-if
 
 # Deploy Resource group
-az deployment sub create --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json  --what-if
+az deployment sub create --location westeurope --template-file resource-group.bicep --parameters resource-group.parameters.json
 
 # Validation Infrastructure
 az bicep build --file main.bicep

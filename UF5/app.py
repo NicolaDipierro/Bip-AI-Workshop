@@ -14,4 +14,5 @@ db_secret = client.get_secret("DBPassword")
 
 db_password = db_secret.value
 
-print("Connessione stabilita con successo!")
+print("Connessione stabilita con successo! Chiave segreta recuperata:", db_password)
+
