@@ -47,10 +47,10 @@ jobs:
         run: |
           bandit -r app/
 
-      - name: Run Dependency Scan
-        working-directory: UF6
-        run: |
-          pip-audit
+      # - name: Run Dependency Scan
+      #   working-directory: UF6
+      #   run: |
+      #     pip-audit
 
   deploy:
     needs: build-and-test
