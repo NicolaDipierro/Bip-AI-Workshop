@@ -2,6 +2,7 @@ import logging
 import os
 from fastapi import HTTPException
 from fastapi import APIRouter
+from .models import Order
 
 router = APIRouter()
 
@@ -18,17 +19,22 @@ def main():
 
 @router.get("/health")
 def health():
-    # TODO
-    pass
+   return {
+       "status": "UP"
+}
 
 
 @router.get("/orders")
 def get_orders():
-    # TODO
-    pass
+    return orders
 
 
 @router.post("/orders")
-def create_order(order):
-    # TODO
-    pass
+def create_order(order: Order):
+    newOrder = order.model_dump()
+    orders.append(newOrder)
+    return {    
+         "message": "Order created",
+         "order": newOrder
+}
+

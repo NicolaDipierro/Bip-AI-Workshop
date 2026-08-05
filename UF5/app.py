@@ -14,5 +14,6 @@ db_secret = client.get_secret("DBPassword")
 
 db_password = db_secret.value
 
+# LOG non conformativo per la sicurezza, ma utile per il debug
 print("Connessione stabilita con successo! Chiave segreta recuperata:", db_password)
 
