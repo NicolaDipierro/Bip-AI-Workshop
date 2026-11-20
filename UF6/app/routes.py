@@ -1,14 +1,13 @@
 import logging
 import os
 import random
-from time import time
-from time import time
-from venv import logger
+import time
 from fastapi import HTTPException
 from fastapi import APIRouter
 from .models import Order
 
 router = APIRouter()
+logger = logging.getLogger('uvicorn.uf6')
 
 API_KEY = "super-secret-api-key"
 
